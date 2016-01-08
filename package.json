@@ -5,7 +5,7 @@
     "backbone.localstorage": "^1.1.7",
     "classnames": "^2.1.2",
     "jquery": "^2.1.0",
-    "react": "^0.13.3",
+    "react": "^0.14.4",
     "todomvc-app-css": "^1.0.0",
     "todomvc-common": "^1.0.1",
     "underscore": "^1.6.0"
