@@ -12,7 +12,7 @@ var app = app || {};
 						<label>	Tarea 1 </label>
 						<button className="destroy"  />
 					</div>
-					<input ref="editField"	className="edit" />
+					<input className="edit" />
 				</li>
 			);
 		}
