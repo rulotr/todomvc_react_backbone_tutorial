@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css"  href="node_modules/todomvc-app-css/index.css">
 		<script src="node_modules/react/dist/react.js"></script>
 	    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+
 	</head>
 	<body>
 		<section id="todoapp">
@@ -17,15 +18,7 @@
 				<section id="main">
 					<input	id="toggle-all"	type="checkbox"	/>
 						<ul id="todo-list">												
-							<script type="text/javascript">
-							    var etiqueta=React.createElement('label',null,'Tarea1');
-							    var caja = React.createElement('input',{className: 'toggle'})	
-							    var boton = React.createElement('button',{className:'destroy'})
-							    var Tarea = React.createElement('div',{className:'view'},caja,etiqueta,boton)
-							    var cajaEditable = React.createElement('input',{className:"edit"})
-							    var Lista = React.createElement('li',null,Tarea,cajaEditable)
-							    ReactDOM.render(Lista,document.getElementById('todo-list'))
-							</script>														
+																					
 						</ul>
 				</section>
 				<footer id="footer">
@@ -48,5 +41,6 @@
 			<p>Created by <a href="http://github.com/petehunt/">Pete Hunt</a></p>
 			<p>Part of<a href="http://todomvc.com">TodoMVC</a></p>
 		</footer>
-	</body>
+	</body> 
+	 <script type="text/javascript" src="js/Tarea.js">	</script>
 </html>
