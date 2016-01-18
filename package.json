@@ -1,8 +1,11 @@
 {
   "private": true,
   "dependencies": {
+    "babel-core": "*",
+    "babel-standalone": "^1.0.0",
     "backbone": "^1.2.3",
     "backbone.localstorage": "^1.1.7",
+    "browserify": "^10.2.4",
     "classnames": "^2.1.2",
     "jquery": "^2.1.0",
     "react": "^0.14.4",
