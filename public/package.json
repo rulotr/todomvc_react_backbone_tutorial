@@ -1,5 +1,8 @@
 {
   "private": true,
+  "bin": {
+  "module-name": "./bin/module-name"
+ },
   "dependencies": {
     "backbone": "^1.2.3",
     "backbone.localstorage": "^1.1.7",
@@ -10,5 +13,9 @@
     "todomvc-app-css": "^1.0.0",
     "todomvc-common": "^1.0.1",
     "underscore": "^1.6.0"
+  },
+  "devDependencies": {
+    "body-parser": "^1.4.3",
+    "express": "^4.4.5"
   }
 }
