@@ -1,5 +1,7 @@
 var todomvc = todomvc || {}
 
 todomvc ={
-	Componentes: {}
+	Componentes: {},
+	Modelos:{},
+	Colecciones:{}
 }

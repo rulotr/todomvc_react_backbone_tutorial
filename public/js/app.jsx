@@ -1,16 +1,22 @@
 (function(){
  	todomvc.Componentes.app = React.createClass({
+ 		componentWillMount: function(){ 
+ 			Backbone.React.Component.mixin.on(this,{collections:{miColleccion: todomvc.Colecciones.tareas }});
+ 		},
+ 		componentWillUnmount: function(){
+ 			Backbone.React.Component.mixin.off(this);
+ 		},
 	render: function(){
 		var TodoFooter = todomvc.Componentes.footer;
 		var TodoItem = todomvc.Componentes.item;
 		var lista_tareas = this.props.tareas;
 
 		var lista = lista_tareas.map(function(tarea){
-			return(<TodoItem title={tarea.title} completed={tarea.completed}/>);
+			return(<TodoItem title={tarea.get('title')} completed={tarea.get('completed')} key={tarea.get('id')}/>);
 		});
 
 		var faltantes = lista_tareas.reduce(function(acumulador,tarea){
-			return tarea.completed ? acumulador : acumulador + 1;
+			return tarea.get('completed') ? acumulador : acumulador + 1;
 		},0);
 
         var completadas = lista_tareas.length - faltantes;
@@ -35,17 +41,9 @@
 		}
 	});
 
-	var listado_tareas =[]
-	listado_tareas = [
-	{title:"Tarea Inicial", completed: false},
-	{title:"Tarea 1", completed: false},
-	{title:"Tarea 2", completed: true},
-	{title:"Tarea 3", completed: false},
-	{title:"Tarea 4", completed: false},
-	{title:"Tarea 5", completed: false},
-	
-	]
+	todomvc.Colecciones.tareas.add({id:1, title:"Tarea Inicial", completed: false});
+	todomvc.Colecciones.tareas.add({id:2, title:"Tarea 1", completed:true});
 
 	var TodoApp = todomvc.Componentes.app;
-	ReactDOM.render((<TodoApp tareas={listado_tareas} />),document.getElementById('todoapp'))
+	ReactDOM.render((<TodoApp tareas={todomvc.Colecciones.tareas} />),document.getElementById('todoapp'))
  })()
