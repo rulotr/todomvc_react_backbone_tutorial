@@ -6,14 +6,24 @@
  		componentWillUnmount: function(){
  			Backbone.React.Component.mixin.off(this);
  		},
+ 		edit: function (tarea, callback) {
+			// refer to todoItem.jsx `handleEdit` for the reason behind the callback
+			this.setState({tarea_editable: tarea.get('id')});
+		},
 	render: function(){
 		var TodoFooter = todomvc.Componentes.footer;
 		var TodoItem = todomvc.Componentes.item;
 		var lista_tareas = this.props.tareas;
 
 		var lista = lista_tareas.map(function(tarea){
-			return(<TodoItem title={tarea.get('title')} completed={tarea.get('completed')} key={tarea.get('id')}/>);
-		});
+			return(
+				    <TodoItem 
+					title={tarea.get('title')} 
+		            completed={tarea.get('completed')} 
+		            onEdit={this.edit.bind(this, tarea)}
+		            editing={this.state.tarea_editable === tarea.get('id')} 
+		            key={tarea.get('id')}/>);
+		},this);
 
 		var faltantes = lista_tareas.reduce(function(acumulador,tarea){
 			return tarea.get('completed') ? acumulador : acumulador + 1;
