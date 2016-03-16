@@ -5,7 +5,13 @@
 		return(
 						<li className={marcada}>
 							<div className="view">
-								<input	className="toggle" type="checkbox" checked ={this.props.completed}/>
+								<input	
+								      className="toggle" 
+								      type="checkbox" 
+								      checked ={this.props.completed}
+								      onChange={this.props.onSeleccion}
+								      //readOnly
+								/>
 								 <label>{this.props.title}</label>
 								<button className="destroy" onClick={this.props.onDestroy} />
 							</div>

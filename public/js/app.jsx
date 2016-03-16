@@ -30,8 +30,9 @@
 			return(<TodoItem 
 				        title={tarea.get('title')} 
 				        completed={tarea.get('completed')}
-				        onDestroy={this.delete.bind(this,tarea)} 
-				        key={tarea.get('id')}/>);
+				        onDestroy={this.delete.bind(this,tarea)}
+				        onSeleccion={tarea.cambio.bind(tarea)} 
+				        key={tarea.get('id')} />);
 		},this);
 
 		var faltantes = lista_tareas.reduce(function(acumulador,tarea){
