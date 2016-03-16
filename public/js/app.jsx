@@ -21,6 +21,12 @@
  	delete: function(tarea){
 			todomvc.Colecciones.tareas.remove(tarea);
 		},
+	marcarTodos: function (event) {
+			var checked = event.target.checked;
+			todomvc.Colecciones.tareas.forEach(function (tarea) {
+				tarea.set('completed', checked);
+			});
+		},
 	render: function(){
 		var TodoFooter = todomvc.Componentes.footer;
 		var TodoItem = todomvc.Componentes.item;
@@ -52,7 +58,11 @@
 					   placeholder="What needs to be done?"/>		
 				</header>
 				<section id="main">
-					<input	id="toggle-all"	type="checkbox"	/>
+					<input	
+					    id="toggle-all"	
+					    type="checkbox"	
+					    onChange={this.marcarTodos}
+					/>
 						<ul id="todo-list">
 							{lista}
 						</ul>
