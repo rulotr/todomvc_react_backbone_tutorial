@@ -18,14 +18,21 @@
  			ReactDOM.findDOMNode(this.refs.newField).value = '';
  		}
  	},
+ 	delete: function(tarea){
+			todomvc.Colecciones.tareas.remove(tarea);
+		},
 	render: function(){
 		var TodoFooter = todomvc.Componentes.footer;
 		var TodoItem = todomvc.Componentes.item;
 		var lista_tareas = this.props.tareas;
 
 		var lista = lista_tareas.map(function(tarea){
-			return(<TodoItem title={tarea.get('title')} completed={tarea.get('completed')} key={tarea.get('id')}/>);
-		});
+			return(<TodoItem 
+				        title={tarea.get('title')} 
+				        completed={tarea.get('completed')}
+				        onDestroy={this.delete.bind(this,tarea)} 
+				        key={tarea.get('id')}/>);
+		},this);
 
 		var faltantes = lista_tareas.reduce(function(acumulador,tarea){
 			return tarea.get('completed') ? acumulador : acumulador + 1;

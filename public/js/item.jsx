@@ -7,7 +7,7 @@
 							<div className="view">
 								<input	className="toggle" type="checkbox" checked ={this.props.completed}/>
 								 <label>{this.props.title}</label>
-								<button className="destroy"  />
+								<button className="destroy" onClick={this.props.onDestroy} />
 							</div>
 							<input className="edit" />
 						</li>
