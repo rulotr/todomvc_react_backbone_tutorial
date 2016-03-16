@@ -32,6 +32,9 @@
 				todomvc.Colecciones.tareas.remove(tarea);
 			});
 		},
+	editar: function (tarea) {
+			console.log("editando tarea " + tarea.get('id'));			
+		},
 	render: function(){
 		var TodoFooter = todomvc.Componentes.footer;
 		var TodoItem = todomvc.Componentes.item;
@@ -42,8 +45,10 @@
 				        title={tarea.get('title')} 
 				        completed={tarea.get('completed')}
 				        onDestroy={this.delete.bind(this,tarea)}
-				        onSeleccion={tarea.cambio.bind(tarea)} 
-				        key={tarea.get('id')} />);
+				        onSeleccion={tarea.cambio.bind(this,tarea)} 
+				        key={tarea.get('id')}
+				        editar = {this.editar.bind(this,tarea)}
+				         />);
 		},this);
 
 		var faltantes = lista_tareas.reduce(function(acumulador,tarea){
