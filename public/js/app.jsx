@@ -1,4 +1,5 @@
 (function(){
+	var ENTER_KEY = 13;
  	todomvc.Componentes.app = React.createClass({
  		componentWillMount: function(){ 
  			Backbone.React.Component.mixin.on(this,{collections:{miColleccion: todomvc.Colecciones.tareas }});
@@ -6,6 +7,17 @@
  		componentWillUnmount: function(){
  			Backbone.React.Component.mixin.off(this);
  		},
+ 	nuevaTarea: function(event){
+ 		if(event.which != ENTER_KEY){
+ 			return;
+ 		}
+ 		var nuevoValor = ReactDOM.findDOMNode(this.refs.newField).value;
+ 		if(nuevoValor){
+ 			var siguienteId = todomvc.Colecciones.tareas.siguienteId();
+ 			todomvc.Colecciones.tareas.add({id: siguienteId, title: nuevoValor, completed:false});
+ 			ReactDOM.findDOMNode(this.refs.newField).value = '';
+ 		}
+ 	},
 	render: function(){
 		var TodoFooter = todomvc.Componentes.footer;
 		var TodoItem = todomvc.Componentes.item;
@@ -25,7 +37,11 @@
 			<div>
 				<header id="header">
 					<h1>todos</h1>
-					<input	ref="newField"	id="new-todo" placeholder="What needs to be done?"/>		
+					<input	
+					   ref="newField"	
+					   id="new-todo" 
+					   onKeyDown={this.nuevaTarea}
+					   placeholder="What needs to be done?"/>		
 				</header>
 				<section id="main">
 					<input	id="toggle-all"	type="checkbox"	/>
