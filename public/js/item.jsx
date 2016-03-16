@@ -3,7 +3,7 @@
 	render: function(){
 		var marcada = this.props.completed === true ? "completed" : "";
 		return(
-						<li className={marcada}>
+						<li className={marcada + " editing"}  >
 							<div className="view">
 								<input	
 								      className="toggle" 
@@ -12,7 +12,7 @@
 								      onChange={this.props.onSeleccion}
 								      //readOnly
 								/>
-								 <label>{this.props.title}</label>
+								 <label onDoubleClick={this.modoEdicion}>{this.props.title}</label>
 								<button className="destroy" onClick={this.props.onDestroy} />
 							</div>
 							<input className="edit" />
