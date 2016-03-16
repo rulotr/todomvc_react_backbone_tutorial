@@ -5,7 +5,7 @@
         var singular_plural = this.props.faltantes === 1 ? 'item' : 'items'
         var completadas = this.props.completadas;
 
-        var botonCompleto = completadas>0 ? (<button	id="clear-completed"> Clear completed </button>) : null;
+        var botonCompleto = completadas>0 ? (<button	id="clear-completed" onClick={this.props.onlimpiarCompletadas} > Clear completed </button>) : null;
 		return(
 				<footer id="footer">
 					<span id="todo-count">

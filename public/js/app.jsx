@@ -27,6 +27,11 @@
 				tarea.set('completed', checked);
 			});
 		},
+	limpiarCompletadas: function () {
+			todomvc.Colecciones.tareas.completadas().forEach(function (tarea) {
+				todomvc.Colecciones.tareas.remove(tarea);
+			});
+		},
 	render: function(){
 		var TodoFooter = todomvc.Componentes.footer;
 		var TodoItem = todomvc.Componentes.item;
@@ -68,7 +73,7 @@
 						</ul>
 				</section>
 
-				<TodoFooter faltantes={faltantes} completadas={completadas} />
+				<TodoFooter faltantes={faltantes} completadas={completadas} onlimpiarCompletadas={this.limpiarCompletadas} />
 		
 			</div>
 			);
