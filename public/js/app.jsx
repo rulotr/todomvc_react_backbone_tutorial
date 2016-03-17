@@ -39,6 +39,9 @@
 			console.log("editando tarea " + tarea.get('id'));	
 			this.setState({editando: tarea.get('id')});	
 		},
+	cancel: function () {
+			this.setState({editando: null});
+		},
 	render: function(){
 		var TodoFooter = todomvc.Componentes.footer;
 		var TodoItem = todomvc.Componentes.item;
@@ -53,6 +56,7 @@
 				        key={tarea.get('id')}
 				        editar = {this.editar.bind(this, tarea)}
 				        editando = {this.state.editando === tarea.get('id')}
+				        onCancel={this.cancel}
 				         />);
 		},this);
 
