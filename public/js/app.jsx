@@ -23,6 +23,7 @@
  	},
  	guardar: function (tarea, texto) {
 			tarea.set({title: texto})
+			this.setState({editando: null});
 		},	
  	delete: function(tarea){
 			todomvc.Colecciones.tareas.remove(tarea);
@@ -55,7 +56,7 @@
 				        title={tarea.get('title')} 
 				        completed={tarea.get('completed')}
 				        onDestroy={this.delete.bind(this,tarea)}
-				        onSeleccion={tarea.cambio.bind(this,tarea)} 
+				        onSeleccion={tarea.cambio.bind(tarea)} 
 				        key={tarea.get('id')}
 				        editar = {this.editar.bind(this, tarea)}
 				        editando = {this.state.editando === tarea.get('id')}

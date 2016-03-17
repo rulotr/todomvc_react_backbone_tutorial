@@ -12,6 +12,9 @@
 			}
 		},
 	handleSubmit: function (event) {
+		   if(!this.props.editando){
+		   	 return;
+		   }
 		    var node =  ReactDOM.findDOMNode(this.refs.editField);	
 			var val = node.value.trim();
 			console.log(val)
@@ -52,6 +55,7 @@
 							   ref="editField"	
 							   className="edit" 
 							   onKeyDown={this.handleKeyDown}
+							   onBlur={this.handleSubmit}
 							   />
 						</li>
 			);
