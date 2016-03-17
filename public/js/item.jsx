@@ -6,7 +6,15 @@
 				this.props.onCancel()
 			}
 		},
-
+    handleEdit: function () {
+			// Le informa al componente padre que hay cambio de celda a editar						
+		    // Le pasamos al componente padre la funcion que ejecutara al final
+			this.props.editar(function(){
+				var node =  ReactDOM.findDOMNode(this.refs.editField);			
+					node.focus();
+					node.setSelectionRange(node.value.length, node.value.length);				
+			}.bind(this));
+		},
 	render: function(){
 		var marcada = this.props.completed === true ? "completed " : " ";
 		var editada = this.props.editando === true ? "editing" : "";
@@ -21,10 +29,11 @@
 								      editando= {this.props.editando}
 								      //readOnly
 								/>
-								 <label onDoubleClick={this.props.editar}>{this.props.title}</label>
+								 <label onDoubleClick={this.handleEdit}>{this.props.title}</label>
 								<button className="destroy" onClick={this.props.onDestroy} />
 							</div>
 							<input 
+							   ref="editField"	
 							   className="edit" 
 							   onKeyDown={this.handleKeyDown}
 							   />

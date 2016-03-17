@@ -35,9 +35,9 @@
 				todomvc.Colecciones.tareas.remove(tarea);
 			});
 		},
-	editar: function (tarea) {
+	editar: function (tarea,callbackHijo) {
 			console.log("editando tarea " + tarea.get('id'));	
-			this.setState({editando: tarea.get('id')});	
+			this.setState({editando: tarea.get('id')},callbackHijo);	
 		},
 	cancel: function () {
 			this.setState({editando: null});
