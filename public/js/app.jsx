@@ -7,6 +7,9 @@
  		componentWillUnmount: function(){
  			Backbone.React.Component.mixin.off(this);
  		},
+ 	getInitialState: function () {
+			return {editando: null};
+		},		
  	nuevaTarea: function(event){
  		if(event.which != ENTER_KEY){
  			return;
@@ -33,7 +36,8 @@
 			});
 		},
 	editar: function (tarea) {
-			console.log("editando tarea " + tarea.get('id'));			
+			console.log("editando tarea " + tarea.get('id'));	
+			this.setState({editando: tarea.get('id')});	
 		},
 	render: function(){
 		var TodoFooter = todomvc.Componentes.footer;
@@ -47,7 +51,8 @@
 				        onDestroy={this.delete.bind(this,tarea)}
 				        onSeleccion={tarea.cambio.bind(this,tarea)} 
 				        key={tarea.get('id')}
-				        editar = {this.editar.bind(this,tarea)}
+				        editar = {this.editar.bind(this, tarea)}
+				        editando = {this.state.editando === tarea.get('id')}
 				         />);
 		},this);
 
