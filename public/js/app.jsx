@@ -21,6 +21,9 @@
  			ReactDOM.findDOMNode(this.refs.newField).value = '';
  		}
  	},
+ 	guardar: function (tarea, texto) {
+			tarea.set({title: texto})
+		},	
  	delete: function(tarea){
 			todomvc.Colecciones.tareas.remove(tarea);
 		},
@@ -57,6 +60,7 @@
 				        editar = {this.editar.bind(this, tarea)}
 				        editando = {this.state.editando === tarea.get('id')}
 				        onCancel={this.cancel}
+				        guardar = {this.guardar.bind(this,tarea)}
 				         />);
 		},this);
 

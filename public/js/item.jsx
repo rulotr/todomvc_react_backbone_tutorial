@@ -1,10 +1,25 @@
 (function(){
 	var ESCAPE_KEY = 27;
+	var ENTER_KEY = 13;
+
  	todomvc.Componentes.item = React.createClass({
  	handleKeyDown: function (event) {
 			if(event.which === ESCAPE_KEY){				
 				this.props.onCancel()
 			}
+			if (event.which === ENTER_KEY) {				
+				this.handleSubmit();
+			}
+		},
+	handleSubmit: function (event) {
+		    var node =  ReactDOM.findDOMNode(this.refs.editField);	
+			var val = node.value.trim();
+			console.log(val)
+			if (val) {
+				this.props.guardar(val);
+				console.log("se guarda");
+			} 
+		//	return false;
 		},
     handleEdit: function () {
 			// Le informa al componente padre que hay cambio de celda a editar						
@@ -12,6 +27,7 @@
 			this.props.editar(function(){
 				var node =  ReactDOM.findDOMNode(this.refs.editField);			
 					node.focus();
+					node.value =this.props.title;
 					node.setSelectionRange(node.value.length, node.value.length);				
 			}.bind(this));
 		},
