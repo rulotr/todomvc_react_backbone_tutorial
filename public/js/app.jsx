@@ -1,15 +1,43 @@
 (function(){
 	var ENTER_KEY = 13;
+
+	var ALL_TODOS = 'all';
+	var ACTIVE_TODOS = 'active';
+	var COMPLETED_TODOS = 'completed';
+
  	todomvc.Componentes.app = React.createClass({
- 		componentWillMount: function(){ 
+ 		componentWillMount: function(){ // Se lanza antes de que se renderice el componente
  			Backbone.React.Component.mixin.on(this,{collections:{miColleccion: todomvc.Colecciones.tareas }});
  		},
- 		componentWillUnmount: function(){
+ 		componentWillUnmount: function(){  // Se lanza antes de que el componente se elimine
  			Backbone.React.Component.mixin.off(this);
  		},
+ 		componentDidMount: function(){
+ 			var Router = Backbone.Router.extend({	 		
+			routes: {
+				'': 'all',
+				'active': 'active',
+				'completed': 'completed'
+			},
+	
+			all: function(){	
+			  	alert("ruta todos")
+			},
+			active: function(){
+				alert("ruta activas")
+			},
+			completed: function(){
+				alert("ruta completadas")
+			}
+			});
+
+ 			var appRouter = new Router();
+			//Comenzamos a monitorizar nuestras rutas
+			Backbone.history.start();
+		},
  	getInitialState: function () {
 			return {editando: null};
-		},		
+		},	
  	nuevaTarea: function(event){
  		if(event.which != ENTER_KEY){
  			return;
@@ -51,7 +79,8 @@
 		var TodoItem = todomvc.Componentes.item;
 		var lista_tareas = this.props.tareas;
 
-		var lista = lista_tareas.map(function(tarea){
+		var lista = lista_tareas.map(function(tarea){		
+
 			return(<TodoItem 
 				        title={tarea.get('title')} 
 				        completed={tarea.get('completed')}
@@ -102,6 +131,6 @@
 	todomvc.Colecciones.tareas.add({id:1, title:"Tarea Inicial", completed: false});
 	todomvc.Colecciones.tareas.add({id:2, title:"Tarea 1", completed:true});
 
-	var TodoApp = todomvc.Componentes.app;
+	var TodoApp = todomvc.Componentes.app;	
 	ReactDOM.render((<TodoApp tareas={todomvc.Colecciones.tareas} />),document.getElementById('todoapp'))
  })()
