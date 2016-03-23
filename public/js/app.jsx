@@ -20,15 +20,9 @@
 				'completed': 'completed'
 			},
 	
-			all: function(){	
-			  	alert("ruta todos")
-			},
-			active: function(){
-				alert("ruta activas")
-			},
-			completed: function(){
-				alert("ruta completadas")
-			}
+			all:this.setState.bind(this,{queMostrar: ALL_TODOS}),
+			active:this.setState.bind(this,{queMostrar: ACTIVE_TODOS}),
+			completed:this.setState.bind(this,{queMostrar: COMPLETED_TODOS})
 			});
 
  			var appRouter = new Router();
@@ -80,6 +74,12 @@
 		var lista_tareas = this.props.tareas;
 
 		var lista = lista_tareas.map(function(tarea){		
+			 if(this.state.queMostrar===ACTIVE_TODOS && tarea.get('completed')===true){
+				return ;
+			 }
+			 if(this.state.queMostrar===COMPLETED_TODOS && tarea.get('completed')===false){
+			 	return ;
+			 }
 
 			return(<TodoItem 
 				        title={tarea.get('title')} 
