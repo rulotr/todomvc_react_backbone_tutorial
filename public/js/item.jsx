@@ -27,7 +27,6 @@ module.exports = React.createClass({
 				this.props.guardar(val);
 				console.log("se guarda");
 			} 
-		//	return false;
 		},
     handleEdit: function () {
 			// Le informa al componente padre que hay cambio de celda a editar						

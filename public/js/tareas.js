@@ -11,6 +11,3 @@ module.exports = Backbone.Collection.extend({
 			return this.where({completed: true});
 		},
 	});
-
-	//todomvc.Colecciones.tareas = new Tareas();
-//});

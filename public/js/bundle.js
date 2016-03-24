@@ -394,10 +394,8 @@ module.exports = React.createClass({
 
 },{"react":167,"react-dom":11}],5:[function(require,module,exports){
 var $ = require('jquery');
-var Backbone = require('backbone');
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Tarea = require('../js/tarea');
 var Tareas = require('../js/tareas.js');
 var App = require('../js/app.jsx');
 
@@ -411,7 +409,6 @@ $(function () {
 		Colecciones: {}
 	};
 
-	todomvc.Modelos.tarea = new Tarea();
 	todomvc.Colecciones.tareas = new Tareas();
 	todomvc.Colecciones.tareas.add({ id: 1, title: "Tarea Inicial", completed: false });
 	todomvc.Colecciones.tareas.add({ id: 2, title: "Tarea 1", completed: true });
@@ -419,7 +416,11 @@ $(function () {
 	ReactDOM.render(React.createElement(App, { tareas: todomvc.Colecciones.tareas }), document.getElementById('todoapp'));
 });
 
-},{"../js/app.jsx":2,"../js/tarea":6,"../js/tareas.js":7,"backbone":9,"jquery":10,"react":167,"react-dom":11}],6:[function(require,module,exports){
+//npm install --global babel-cli
+//npm install -g babel-preset-react
+//browserify -t [babelify --presets [react] ] main.jsx -o bundle.js
+
+},{"../js/app.jsx":2,"../js/tareas.js":7,"jquery":10,"react":167,"react-dom":11}],6:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
