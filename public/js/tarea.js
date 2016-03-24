@@ -1,5 +1,6 @@
-(function(){
-	   todomvc.Modelos.tarea = Backbone.Model.extend({
+var Backbone = require('backbone') ;
+
+module.exports = Backbone.Model.extend({
 		default:{
 			id: '',
 			title: '',
@@ -8,5 +9,4 @@
 		cambio: function () {			   
 			this.set({completed: !this.get('completed')});
 		},
-	});
-})();
+});

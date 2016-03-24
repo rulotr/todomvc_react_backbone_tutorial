@@ -1,8 +1,13 @@
-(function(){
-	var ESCAPE_KEY = 27;
-	var ENTER_KEY = 13;
+//todomvc.Componentes.item
+var React = require('react') ;
+var ReactDOM = require('react-dom') ;
 
- 	todomvc.Componentes.item = React.createClass({
+
+var ESCAPE_KEY = 27;
+var ENTER_KEY = 13;
+
+
+module.exports = React.createClass({
  	handleKeyDown: function (event) {
 			if(event.which === ESCAPE_KEY){				
 				this.props.onCancel()
@@ -61,4 +66,3 @@
 			);
 		}
 	});
- })();

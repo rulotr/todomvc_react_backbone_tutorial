@@ -1,18 +1,25 @@
-(function(){
-	var ENTER_KEY = 13;
 
-	var ALL_TODOS = 'all';
-	var ACTIVE_TODOS = 'active';
-	var COMPLETED_TODOS = 'completed';
+var React    = require('react');
+var ReactDOM = require('react-dom');
+var Backbone = require('backbone');
+var BackboneReact = require('backbone-react-component');
+var TodoItem = require('../js/item.jsx');
+var TodoFooter = require('../js/footer.jsx');
 
- 	todomvc.Componentes.app = React.createClass({
- 		componentWillMount: function(){ // Se lanza antes de que se renderice el componente
+var ENTER_KEY = 13;
+var ALL_TODOS = 'all';
+var ACTIVE_TODOS = 'active';
+var COMPLETED_TODOS = 'completed';
+
+ 	//todomvc.Componentes.app 
+module.exports = React.createClass({
+ 		componentWillMount: function(){ // Se lanza antes de que se renderice el componente 		
  			Backbone.React.Component.mixin.on(this,{collections:{miColleccion: todomvc.Colecciones.tareas }});
  		},
- 		componentWillUnmount: function(){  // Se lanza antes de que el componente se elimine
+ 		componentWillUnmount: function(){  // Se lanza antes de que el componente se elimine 		
  			Backbone.React.Component.mixin.off(this);
  		},
- 		componentDidMount: function(){
+ 		componentDidMount: function(){		
  			var Router = Backbone.Router.extend({	 		
 			routes: {
 				'': 'all',
@@ -69,8 +76,6 @@
 			this.setState({editando: null});
 		},
 	render: function(){
-		var TodoFooter = todomvc.Componentes.footer;
-		var TodoItem = todomvc.Componentes.item;
 		var lista_tareas = this.props.tareas;
 
 		var lista = lista_tareas.map(function(tarea){		
@@ -80,6 +85,7 @@
 			 if(this.state.queMostrar===COMPLETED_TODOS && tarea.get('completed')===false){
 			 	return ;
 			 }
+
 
 			return(<TodoItem 
 				        title={tarea.get('title')} 
@@ -92,8 +98,7 @@
 				        onCancel={this.cancel}
 				        guardar = {this.guardar.bind(this,tarea)}
 				         />);
-		},this);
-
+		},this);        
 		var faltantes = lista_tareas.reduce(function(acumulador,tarea){
 			return tarea.get('completed') ? acumulador : acumulador + 1;
 		},0);
@@ -117,7 +122,7 @@
 					    onChange={this.marcarTodos}
 					/>
 						<ul id="todo-list">
-							{lista}
+						  {lista}
 						</ul>
 				</section>
 
@@ -128,9 +133,3 @@
 		}
 	});
 
-	todomvc.Colecciones.tareas.add({id:1, title:"Tarea Inicial", completed: false});
-	todomvc.Colecciones.tareas.add({id:2, title:"Tarea 1", completed:true});
-
-	var TodoApp = todomvc.Componentes.app;	
-	ReactDOM.render((<TodoApp tareas={todomvc.Colecciones.tareas} />),document.getElementById('todoapp'))
- })()

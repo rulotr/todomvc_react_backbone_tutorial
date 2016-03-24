@@ -1,5 +1,7 @@
- (function(){
- 	todomvc.Componentes.footer = React.createClass({
+var React = require('react') ;
+
+
+module.exports = React.createClass({
 	render: function(){
 		var faltantes = this.props.faltantes;
         var singular_plural = this.props.faltantes === 1 ? 'item' : 'items'
@@ -22,5 +24,4 @@
 			   	</footer>
 			);
 		}
-	});
- })();
+});
